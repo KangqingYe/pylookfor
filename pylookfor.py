@@ -1,5 +1,5 @@
 '''
-lookfor
+pylookfor
 ======
 A lightweight module searching methods in the current python environment by keywords.
 
@@ -9,7 +9,7 @@ if any of them contain the keywords.
 
 Example:
 
-    import lookfor as lf
+    import pylookfor as lf
 
     lf.lookfor('sort')
 
@@ -17,7 +17,7 @@ It can search methods in specify modules,
 
 Example:
 
-    import lookfor as lf
+    import pylookfor as lf
 
     lf.lookfor('sort',modules = ['scipy'])
 
@@ -25,7 +25,7 @@ It can limit the number of method printed.
 
 Example:
 
-    import lookfor as lf
+    import pylookfor as lf
 
     lf.lookfor('sort',modules = ['scipy'],num_print = 5)
 '''
