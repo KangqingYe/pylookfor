@@ -1,23 +1,25 @@
 # pylookfor
 A lightweight module searching methods in the current python environment by keywords.
 
----
+
 ## method - pylookfor.lookfor
 **pylookfor.lookfor**(key: str, num_print=0, modules=[])
+
 Searching methods in the current python environment by keywords.
+
 Print modules, methods and the first line of their documents if any of them contain the keywords.
 
 **Parameters**
 * **key: str**
-The keywords.
+    The keywords.
 * **num_print: int, optional**
-            The number of the methods that printed.
-            default: 0 means no limit.
+    The number of the methods that printed.
+    default: 0 means no limit.
 * **modules: list, optional**
-            Search methods in these modules.
-            default: [] means search all the modules.
+    Search methods in these modules.
+    default: [] means search all the modules.
 
-**Example**
+## Example
 Like 'lookfor' in Matlab, it can print modules, methods and the first line of their documents if any of them contain the keywords.
 ```python
 import pylookfor as lf
@@ -41,7 +43,7 @@ isort.sort_code_string - Sorts any imports within the provided code string, retu
 isort.sort_file - Sorts and formats any groups of imports imports within the provided file or Path.
 isort.sort_stream - Sorts any imports within the provided code stream, outputs to the provided output stream.
 ``` 
-It can search methods in specify modules,
+It can search methods in specify modules.
 ```python
 import pylookfor as lf
 lf.lookfor('sort',modules = ['scipy'])
