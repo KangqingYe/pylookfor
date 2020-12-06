@@ -1,4 +1,4 @@
-'''
+"""
 pylookfor
 ======
 A lightweight module searching methods in the current python environment by keywords.
@@ -28,7 +28,7 @@ Example:
     import pylookfor as lf
 
     lf.lookfor('sort',modules = ['scipy'],num_print = 5)
-'''
+"""
 import os
 import sys
 import inspect
@@ -42,20 +42,38 @@ _std_out = sys.stdout
 _srd_err = sys.stderr
 
 
-def _disable_std():
-    sys.stderr = _dev_null
-    sys.stdout = _dev_null
-
-
-def _enable_std():
-    sys.stdout = _std_out
-    sys.stderr = _srd_err
-
-
 def _is_legal_method(obj):
     return (inspect.isfunction(obj) or
             inspect.ismethod(obj) or
             inspect.isbuiltin(obj)) and obj.__name__[0] != '_'
+
+
+def _silent_import(name):
+    def disable_std():
+        sys.stderr = _dev_null
+        sys.stdout = _dev_null
+
+    def enable_std():
+        sys.stdout = _std_out
+        sys.stderr = _srd_err
+
+    disable_std()
+    mod = importlib.__import__(name, fromlist=[''])
+    enable_std()
+    return mod
+
+
+def _get_doc_firstline(doc):
+    if doc.__doc__:
+        docs = doc.__doc__.splitlines()
+        for d in docs:
+            line = d.strip()
+            if len(line) == 0:
+                continue
+            else:
+                return line
+
+    return 'No Documentation Found.'
 
 
 def _scan_modules(key: str) -> dict:
@@ -64,9 +82,8 @@ def _scan_modules(key: str) -> dict:
 
     def mod_name_concat_doc(mod_name):
         try:
-            _disable_std(); mod = importlib.__import__(mod_name); _enable_std()
-            ret = mod_name + (' - ' + mod.__doc__.splitlines()[0]) if (
-                        mod.__doc__ and len(mod.__doc__.splitlines()[0].strip())) else '', mod
+            mod = _silent_import(mod_name)
+            ret = mod_name + ' - ' + _get_doc_firstline(mod), mod
         except Exception:
             ret = None, None
         return ret
@@ -102,8 +119,7 @@ def _scan_methods(key:str,modules:dict,num_print:int):
     num = 0
 
     def method_name_concat_doc(method):
-        return method.__name__ + (' - ' + method.__doc__.splitlines()[0]) if (
-                method.__doc__ and len(method.__doc__.splitlines()[0].strip())) else ''
+        return method.__name__ + ' - ' + _get_doc_firstline(method)
 
     print('--------------------Methods----------------------')
     for _, module in modules.items():
@@ -145,7 +161,7 @@ def _check_args(n:int, modules: list):
 
 
 def lookfor(key: str, num_print=0, modules=[]):
-    '''
+    """
     Searching methods in the current python environment by keywords.
     Print modules, methods and the first line of their documents if any of them contain the keywords.
 
@@ -165,7 +181,7 @@ def lookfor(key: str, num_print=0, modules=[]):
     It can only find methods in modules which can be imported
     Search all of the modules might take a little time.
     Search methods in specific modules will be much quicker.
-    '''
+    """
     _check_alpha(key)
     _check_args(num_print, modules)
     key = key.lower()
@@ -177,11 +193,12 @@ def lookfor(key: str, num_print=0, modules=[]):
         for mod_name in modules:
             _check_alpha(mod_name)
             try:
-                mod = importlib.__import__(mod_name);
+                mod = _silent_import(mod_name)
             except Exception:
                 raise Exception("ImportError: modules can't be import")
             _modules[mod.__name__] = mod
 
-    _scan_methods(key,_modules,num_print)
+    _scan_methods(key, _modules, num_print)
 
     _dev_null.close()
+
