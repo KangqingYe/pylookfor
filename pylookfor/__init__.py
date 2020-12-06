@@ -19,7 +19,7 @@ Example:
 
     import pylookfor as lf
 
-    lf.lookfor('sort',modules = ['scipy'])
+    lf.lookfor('sort', modules = ['scipy', 'numpy'])
 
 It can limit the number of method printed.
 
@@ -27,7 +27,7 @@ Example:
 
     import pylookfor as lf
 
-    lf.lookfor('sort',modules = ['scipy'],num_print = 5)
+    lf.lookfor('sort', modules = ['scipy','numpy'], num_print = 5)
 """
 import os
 import sys
@@ -72,7 +72,6 @@ def _get_doc_firstline(doc):
                 continue
             else:
                 return line
-
     return 'No Documentation Found.'
 
 
@@ -201,4 +200,3 @@ def lookfor(key: str, num_print=0, modules=[]):
     _scan_methods(key, _modules, num_print)
 
     _dev_null.close()
-
