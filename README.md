@@ -12,16 +12,21 @@ Print modules, methods and the first line of their documents if any of them cont
 
 **Parameters**
 * **key: str**
+
     The keywords.
 * **num_print: int, optional**
+  
     The number of the methods that printed.
+
     Default: 0 means no limit.
 * **modules: list, optional**
+  
     Search methods in these modules.
+    
     Default: [] means search all the modules.
 
 ## Example
-### Intall
+### Install
 ```python
 pip install pylookfor
 ```
@@ -70,20 +75,20 @@ numpy.msort - Return a copy of an array sorted along the first axis.
 numpy.searchsorted - Find indices where elements should be inserted to maintain order.
 ```
 ## How does it work & Thanks
-Search modules：
+**Search modules**：
 
 * *sys.builtin_module_names* - return the names of all modules that are compiled into this Python interpreter.
 
 * *pkgutil.walk_packages* - return the names of modules user installed.
 
-Search Methods：
+**Search Methods**：
 
 Use the *dir()* return a list of valid attributes of the object, and select methods in them.
 
-Search documetion：
+**Search documetion**：
 
 Call the *.\_\_doc\_\_* in each modules.
 
-Thanks：
+**Thanks**：
 
 Thank the help of [Rossil](https://github.com/Rossil2012) and the inspiration of [Jay_Wu](https://github.com/Jay-9912) and [kf-Zhang](https://github.com/kf-zhang).
