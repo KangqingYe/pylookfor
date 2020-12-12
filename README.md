@@ -22,7 +22,7 @@ Print modules, methods and the first line of their documents if any of them cont
 * **modules: list, optional**
   
     Search methods in these modules.
-    
+
     Default: [] means search all the modules.
 
 ## Example
@@ -91,4 +91,4 @@ Call the *.\_\_doc\_\_* in each modules.
 
 **Thanks**：
 
-Thank the help of [Rossil](https://github.com/Rossil2012) and the inspiration of [Jay_Wu](https://github.com/Jay-9912) and [kf-Zhang](https://github.com/kf-zhang).
+Thanks for the help of [Rossil](https://github.com/Rossil2012) and the inspiration of [Jay_Wu](https://github.com/Jay-9912) and [kf-Zhang](https://github.com/kf-zhang).
