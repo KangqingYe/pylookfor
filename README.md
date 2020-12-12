@@ -83,7 +83,7 @@ numpy.searchsorted - Find indices where elements should be inserted to maintain 
 
 **Search Methods**：
 
-Use the *dir()* return a list of valid attributes of the object, and select methods in them.
+Use the *dir()* to return a list of valid attributes of the object, and select methods in them.
 
 **Search documetion**：
 
