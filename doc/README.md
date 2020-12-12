@@ -1,37 +1,39 @@
 # pylookfor
 [中文](https://github.com/KangqingYe/pylookfor/tree/main/doc/README.md)|[English](https://github.com/KangqingYe/pylookfor/blob/main/README.md)
 
-A lightweight module searching methods in the current python environment by keywords.
+在当前环境下依据关键词查找库函数的轻量python库。
 
-## Method - pylookfor.lookfor
+## 函数 - pylookfor.lookfor
 **pylookfor.lookfor**(key: str, num_print=0, modules=[])
 
-Searching methods in the current python environment by keywords.
+在当前python环境下搜索关键词来查找库函数。
 
-Print modules, methods and the first line of their documents if any of them contain the keywords.
+如果库名、库函数名或者它们文档的第一行中包含关键词就把它们显示出来。
 
-**Parameters**
+**参数**
 * **key: str**
-    The keywords.
-* **num_print: int, optional**
-    The number of the methods that printed.
-    Default: 0 means no limit.
-* **modules: list, optional**
-    Search methods in these modules.
-    Default: [] means search all the modules.
+    关键词。
+* **num_print: int, 可选**
+    显示的库函数数量。
 
-## Example
-### Intall
+    默认: 0 表示全部显示。
+* **modules: list, 可选**
+    在这些库里查找库函数。
+    
+    默认：[] 表示在所有库里查找。
+
+## 示例
+### 安装
 ```python
 pip install pylookfor
 ```
-### Example1
-Like 'lookfor' in Matlab, it can print modules, methods and the first line of their documents if any of them contain the keywords.
+### 示例1
+和Matlab里的'lookfor'函数类似，如果库名、库函数名或者它们文档的第一行中包含关键词就把它们显示出来。
 ```python
 import pylookfor as lf
 lf.lookfor('sort',num_print=5)
 ```
-Output:
+输出:
 ```
 --------------------Modules----------------------
 isort - Defines the public isort interface
@@ -49,13 +51,13 @@ cytoolz.sorted - Return a new list containing all items from the iterable in asc
 isort.check_file - Checks any imports within the provided file, returning `False` if any unsorted or
 isort.check_stream - Checks any imports within the provided code stream, returning `False` if any unsorted or
 ``` 
-### Example2
-It can search methods in specify modules.
+### 示例2
+它可以在特定的库里查找方法。
 ```python
 import pylookfor as lf
 lf.lookfor('sort',modules=['scipy‘,’numpy'],num_print=10)
 ``` 
-Output:
+输出:
 ```
 --------------------Methods----------------------
 scipy.argsort - scipy.argsort is deprecated and will be removed in SciPy 2.0.0, use numpy.argsort instead
@@ -69,21 +71,22 @@ numpy.lexsort - lexsort(keys, axis=-1)
 numpy.msort - Return a copy of an array sorted along the first axis.
 numpy.searchsorted - Find indices where elements should be inserted to maintain order.
 ```
-## How does it work & Thanks
-Search modules：
+## 原理和感谢
+查找库：
 
-* *sys.builtin_module_names* - return the names of all modules that are compiled into this Python interpreter.
+*sys.builtin_module_names* —— 返回内建模块的名称
 
-* *pkgutil.walk_packages* - return the names of modules user installed.
+*pkgutil.walk_packages* —— 返回所有用户安装的模块的名称
 
-Search Methods：
+查找库函数：
 
-Use the *dir()* return a list of valid attributes of the object, and select methods in them.
+用*dir()* 返回所有库函数及其属性，再判断其是否为可用库函数。
 
-Search documetion：
+查找库文档：
 
-Call the *.\_\_doc\_\_* in each modules.
+调用每个模块的 *.\_\_doc\_\_* 函数
 
-Thanks：
+感谢：
 
-Thank the help of [Rossil](https://github.com/Rossil2012) and the inspiration of [Jay_Wu](https://github.com/Jay-9912) and [kf-Zhang](https://github.com/kf-zhang).
+感谢[Rossil](https://github.com/Rossil2012)的帮助，[Jay_Wu](https://github.com/Jay-9912)和[kf-Zhang](https://github.com/kf-zhang)的启发。
+
