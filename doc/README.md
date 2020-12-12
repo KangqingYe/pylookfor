@@ -77,9 +77,9 @@ numpy.searchsorted - Find indices where elements should be inserted to maintain 
 ## 原理和感谢
 **查找库**：
 
-*sys.builtin_module_names* —— 返回内建模块的名称
+*sys.builtin_module_names* —— 返回内建模块的名称。
 
-*pkgutil.walk_packages* —— 返回所有用户安装的模块的名称
+*pkgutil.walk_packages* —— 返回所有用户安装的模块的名称。
 
 **查找库函数**：
 
@@ -87,7 +87,7 @@ numpy.searchsorted - Find indices where elements should be inserted to maintain 
 
 **查找库文档**：
 
-调用每个模块的 *.\_\_doc\_\_* 函数
+调用每个模块的 *.\_\_doc\_\_* 函数。
 
 **感谢**：
 
